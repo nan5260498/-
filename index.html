@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐可滴答 - 专业音乐制作工作室</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero-image {
+            max-width: 800px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 0 auto 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .brand-name {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            letter-spacing: 2px;
+        }
+        
+        .studio-title {
+            font-size: 1.8rem;
+            color: #cccccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .service-description {
+            font-size: 1.2rem;
+            color: #999999;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .section {
+            background-color: #2d2d2d;
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .section img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 12px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+        }
+        
+        .waveform-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .waveform-item {
+            text-align: center;
+        }
+        
+        .waveform-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+        }
+        
+        .waveform-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .contact-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-icon {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3d3d3d, #2d2d2d);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        
+        .contact-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(255,215,0,0.3);
+        }
+        
+        .contact-icon i {
+            font-size: 3rem;
+            color: #ffd700;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a1a;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background-color: #3d3d3d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .price-table th,
+        .price-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+        
+        .price-table th {
+            background-color: #ffd700;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .price-table td {
+            color: #e5e5e5;
+            font-size: 1rem;
+        }
+        
+        .price-table tr:hover {
+            background-color: #4d4d4d;
+        }
+        
+        @media (max-width: 768px) {
+            .brand-name {
+                font-size: 2rem;
+            }
+            
+            .studio-title {
+                font-size: 1.4rem;
+            }
+            
+            .waveform-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-icons {
+                gap: 30px;
+            }
+            
+            .hero-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/ae759ca1-4b62-422a-b6f9-34aa73bbcb69_wm" alt="专业录音棚" class="hero-image">
+            
+            <h1 class="brand-name">音乐可滴答</h1>
+            <h2 class="studio-title">专业音乐制作工作室</h2>
+            <p class="service-description">
+                提供音乐制作服务，包括原创音乐制作、钢琴伴奏制作、五线谱制作等专业服务。
+                我们拥有专业的设备和丰富的经验，为您打造高品质的音乐作品。
+            </p>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- 制作流程 -->
+            <div class="section">
+                <h2>制作流程</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/8b591fc9-1d76-46fa-9ae2-9b2a224d852b_wm" alt="音乐制作流程">
+            </div>
+
+            <!-- 服务项目 -->
+            <div class="section">
+                <h2>服务项目</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/2bd75937-9fce-4765-ad38-ee5a54097874_wm" alt="服务项目">
+            </div>
+
+            <!-- 钢琴伴奏制作 -->
+            <div class="section">
+                <h2>钢琴伴奏制作</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/82bd82cb-f770-423c-ac9a-55dd28efe36c_wm" alt="钢琴伴奏制作">
+            </div>
+
+            <!-- 五线谱制作 -->
+            <div class="section">
+                <h2>五线谱制作服务</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/1830cb1b-ce65-4b83-b6ce-45e68766aee7_wm" alt="五线谱制作">
+            </div>
+
+            <!-- 专业设备 -->
+            <div class="section">
+                <h2>专业设备保障</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/9efc21a1-41e8-4412-92f0-5da28595872c_wm" alt="专业设备">
+            </div>
+
+            <!-- 制作前后对比 -->
+            <div class="section">
+                <h2>制作前后对比</h2>
+                <div class="waveform-container">
+                    <div class="waveform-item">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/ee54b16b-23e7-4cfb-8043-b534319798d8_wm" alt="制作前">
+                        <div class="waveform-title">制作前</div>
+                    </div>
+                    <div class="waveform-item">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/c245cebc-90aa-431b-a438-f40c11d0a947_wm" alt="制作后">
+                        <div class="waveform-title">制作后</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 客户好评 -->
+            <div class="section">
+                <h2>客户好评</h2>
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/f2cfe6ac-5cbd-49ba-ae90-114717718325_wm" alt="客户好评">
+            </div>
+
+            <!-- 咨询客服 -->
+            <div class="contact-section">
+                <h2 class="contact-title">咨询客服</h2>
+                <div class="contact-icons">
+                    <div class="contact-icon" onclick="copyWechat()">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <div class="contact-icon" onclick="copyQQ()">
+                        <i class="fab fa-qq"></i>
+                    </div>
+                </div>
+                
+                <!-- 服务价格 -->
+                <h3 style="color: #ffd700; font-size: 1.8rem; margin-bottom: 20px; font-weight: 600;">服务价格</h3>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>服务项目</th>
+                            <th>价格范围</th>
+                            <th>制作周期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>原创音乐制作</td>
+                            <td>¥800-3000</td>
+                            <td>5-15天</td>
+                        </tr>
+                        <tr>
+                            <td>钢琴伴奏制作</td>
+                            <td>¥300-800</td>
+                            <td>3-7天</td>
+                        </tr>
+                        <tr>
+                            <td>五线谱制作</td>
+                            <td>¥200-500</td>
+                            <td>2-5天</td>
+                        </tr>
+                        <tr>
+                            <td>混音母带处理</td>
+                            <td>¥400-1200</td>
+                            <td>3-7天</td>
+                        </tr>
+                        <tr>
+                            <td>录音制作服务</td>
+                            <td>¥500-1500</td>
+                            <td>3-10天</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Message -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function copyWechat() {
+            navigator.clipboard.writeText('Music_OS7').then(function() {
+                showToast('已复制微信号');
+            });
+        }
+
+        function copyQQ() {
+            navigator.clipboard.writeText('5260498').then(function() {
+                showToast('已复制QQ号');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            
+            setTimeout(function() {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"970021331bf17ce0","version":"2025.8.0","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"4edd5f8ec12a48cfa682ab8261b80a79","b":1}' crossorigin="anonymous"></script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDkD9%2BKJy%2B4AklXoa9iGIAIG1%2FvN8GhzIawem4ronNS67hDGCwK8%2Fy1ToYCwz%2F2h2UXbzvGbYSlr2fWg8delJ6btTSTMVVeYib9IWfcQQXY2yxXood2ptW1MCosX99osaxF6ZXBfEVnhxgqFirX4Gm19dgbwMZKOvnIARUkjd85tXI%2Fc%2Bz2WZKtPkXbYTiVUdFHKPb4ZFf1aMO9dOaBS7C8LqM9P%2BUut6baxKfcNjsKYf5FWKEEoVKhHv1EvJPTAGi0OsuRms3HeTJiW7%2F7nZQ1v5%2B4BKX%2BobROtkO73d2Rh7v2EaUooBZxOrbNxyZQ1bvJ9d5o10RhkOLhpvnONLTFkb2TzdN%2FLOOqk1YDLfZ0J1otEeD%2FOko5Txb8IQw%2FQNvtBHo9RpuBmAgi55Z7xoY2hguu4m5%2BJInJBAN4h2%2FePvQWFyVaqza9HlbDp5Lcb%2B3Ete5U27gzHasnwwA7h%2F%2Bun0LKzKvcPdsm%2B47h2sSP6plcfBB8od03UHTp6p43U2ecAwTlQ4tzKdvQX7xxbYo%2BM%3D";
+        window.__genspark_locale = "zh-CN";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDkD9+KJy+4AklXoa9iGIAIG1/vN8GhzIawem4ronNS67hDGCwK8/y1ToYCwz/2h2UXbzvGbYSlr2fWg8delJ6btTSTMVVeYib9IWfcQQXY2yxXood2ptW1MCosX99osaxF6ZXBfEVnhxgqFirX4Gm19dgbwMZKOvnIARUkjd85tXI/c+z2WZKtPkXbYTiVUdFHKPb4ZFf1aMO9dOaBS7C8LqM9P+Uut6baxKfcNjsKYf5FWKEEoVKhHv1EvJPTAGi0OsuRms3HeTJiW7/7nZQ1v5+4BKX+obROtkO73d2Rh7v2EaUooBZxOrbNxyZQ1bvJ9d5o10RhkOLhpvnONLTFkb2TzdN/LOOqk1YDLfZ0J1otEeD/Oko5Txb8IQw/QNvtBHo9RpuBmAgi55Z7xoY2hguu4m5+JInJBAN4h2/ePvQWFyVaqza9HlbDp5Lcb+3Ete5U27gzHasnwwA7h/+un0LKzKvcPdsm+47h2sSP6plcfBB8od03UHTp6p43U2ecAwTlQ4tzKdvQX7xxbYo+M=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
